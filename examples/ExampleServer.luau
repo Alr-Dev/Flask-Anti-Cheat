@@ -52,9 +52,8 @@ local function banPlayer(player, reason)
 end
 
 reportExploitEvent.OnServerEvent:Connect(function(player, exploitType)
-	if exploitType == "chams_detected" thenn, example:
+	if exploitType == "chams_detected" then
 		banPlayer(player, "Chams detected.")
-
 	elseif exploitType == "WalkSpeedexploit" then
 		banPlayer(player, "WalkSpeed exceeded the limit")
 
