@@ -68,6 +68,7 @@ reportExploitEvent.OnServerEvent:Connect(function(player, exploitType)
 
 	elseif exploitType == "antidestroy" then
 		banPlayer(player) 
+            # read documentation for know more.
 		]]
 	end
 end)
