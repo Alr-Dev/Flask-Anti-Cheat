@@ -26,11 +26,7 @@ This project consists of a ban management system built using Flask for the backe
 
 ## Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/ban-system.git
-   cd ban-system
-   ```
+1. Clone the repository.
 
 2. Install the required Python packages:
    ```bash
