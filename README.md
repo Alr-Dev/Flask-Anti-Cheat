@@ -1,6 +1,6 @@
-# Flask Anti-Cheat
+# Flask Anti-Cheat Documentation
 
-This project consists of a ban management system built using Flask for the backend API and a Roblox server script to interact with the API. The system allows banning users based on specific reasons and checking their ban status. 
+This project consists of a ban management system built using Flask for the backend API and a Roblox server script to interact with the API. The system allows banning users based on specific reasons and checking their ban status.
 
 ## Table of Contents
 
@@ -12,6 +12,8 @@ This project consists of a ban management system built using Flask for the backe
   - [3. Ban User Endpoint](#3-ban-user-endpoint)
   - [4. Check Ban Status Endpoint](#4-check-ban-status-endpoint)
 - [Roblox Server Integration](#roblox-server-integration)
+  - [1. Key Functions](#1-key-functions)
+  - [2. Customizing Ban Actions](#2-customizing-ban-actions)
 - [Logging](#logging)
 - [Usage](#usage)
 - [Contributing](#contributing)
@@ -27,17 +29,14 @@ This project consists of a ban management system built using Flask for the backe
 ## Installation
 
 1. Clone the repository.
-
 2. Install the required Python packages:
    ```bash
    pip install Flask
    ```
-
 3. Run the API server:
    ```bash
    python app.py
    ```
-
 4. Ensure your Roblox game can communicate with the API (update the `BAN_SERVER_URL` if needed).
 
 ## API Endpoints
@@ -118,10 +117,28 @@ The Roblox server script interacts with the Flask API to check for banned users 
 ```lua
 local HttpService = game:GetService("HttpService")
 local BAN_SERVER_URL = "http://127.0.0.1:5000"
-...
+
+local function checkBan(userId)
+    local response = HttpService:PostAsync(BAN_SERVER_URL .. "/check_ban", HttpService:JSONEncode({user_id = userId}), Enum.HttpContentType.ApplicationJson)
+    local result = HttpService:JSONDecode(response)
+    
+    return result.status == "banned"
+end
+
+local function banUser(userId, reason)
+    local response = HttpService:PostAsync(BAN_SERVER_URL .. "/ban", HttpService:JSONEncode({user_id = userId, reason = reason}), Enum.HttpContentType.ApplicationJson)
+    return response
+end
 ```
 
-The script defines functions to check if a player is banned and to ban a player when specific exploits are detected.
+### 1. Key Functions
+
+- **`checkBan(userId)`**: Sends a request to the `/check_ban` endpoint to determine if a user is banned.
+- **`banUser(userId, reason)`**: Sends a request to the `/ban` endpoint to ban a specified user with a reason.
+
+### 2. Customizing Ban Actions
+
+You can customize the actions taken when a player is detected as banned. This may include sending a notification, removing them from the game, or logging additional information.
 
 ## Logging
 
