@@ -16,8 +16,6 @@ This project consists of a ban management system built using Flask for the backe
   - [2. Customizing Ban Actions](#2-customizing-ban-actions)
 - [Logging](#logging)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -150,10 +148,5 @@ All ban actions are logged into a file (`logs.txt`) for future reference. Each l
 2. To check if a user is banned, send a POST request to `/check_ban` with the user ID.
 3. The Roblox server script automatically checks the ban status when a player joins and bans them if necessary.
 
-## Contributing
 
-Feel free to fork the repository, make improvements, and submit a pull request. Ensure your contributions are well-documented.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
